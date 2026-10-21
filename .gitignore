@@ -1,0 +1,18 @@
+# Archivos de bloqueo y configuración local de KiCad
+*.lck
+~*.lck
+*.kicad_prl
+
+# Respaldos y cachés de KiCad
+*-backups/
+*.bak
+*.kicad_pcb-bak
+*.kicad_sch-bak
+fp-info-cache
+
+# Historial local del editor
+.history/
+
+# Archivos temporales de simulación / autorouter
+*.dsn
+*.ses
