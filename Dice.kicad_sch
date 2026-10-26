@@ -3982,7 +3982,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "08c8bf3c-54a2-4e62-8738-295e2511f481")
-		(property "Reference" "R7"
+		(property "Reference" "R1"
 			(at 205.74 104.1399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4046,7 +4046,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "R7")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -4086,7 +4086,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Battery:BatteryHolder_Keystone_1060_1x2032"
+		(property "Footprint" "Battery:BatteryHolder_Keystone_103_1x20mm"
 			(at 19.05 23.876 90)
 			(hide yes)
 			(show_name no)
@@ -4615,7 +4615,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1f4e6ded-80fb-4b35-8f17-1228824a269c")
-		(property "Reference" "R3"
+		(property "Reference" "R10"
 			(at 144.78 38.0999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4679,7 +4679,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "R3")
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -4857,7 +4857,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "42baf861-822d-4bf3-94b3-b653be4ba38c")
-		(property "Reference" "R9"
+		(property "Reference" "R2"
 			(at 189.23 135.8899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4921,7 +4921,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "R9")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -4938,7 +4938,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "50c63add-06ac-4a0e-879b-8b702d86d187")
-		(property "Reference" "R6"
+		(property "Reference" "R3"
 			(at 147.32 138.4299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5002,7 +5002,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "R6")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -5474,7 +5474,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "65aa0978-94ec-49d7-824c-8a521e39a50c")
-		(property "Reference" "R8"
+		(property "Reference" "R6"
 			(at 157.48 138.4299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5538,7 +5538,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "R8")
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -5556,7 +5556,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "68806b6a-8b5a-487e-bdde-5548a45e2502")
-		(property "Reference" "D5"
+		(property "Reference" "D7"
 			(at 203.2 145.0974 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5631,7 +5631,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "D5")
+					(reference "D7")
 					(unit 1)
 				)
 			)
@@ -5728,7 +5728,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "74854fd1-6338-4d09-8426-5d529ed9572e")
-		(property "Reference" "R5"
+		(property "Reference" "R7"
 			(at 201.93 135.8899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5792,7 +5792,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "R5")
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -6175,7 +6175,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9fba3d89-69a1-4ae3-b745-d45a1e08b881")
-		(property "Reference" "D7"
+		(property "Reference" "D2"
 			(at 190.5 145.0974 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6250,7 +6250,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "D7")
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -6714,7 +6714,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b2707233-7d7c-417b-b467-28857c843f0b")
-		(property "Reference" "R10"
+		(property "Reference" "R5"
 			(at 200.66 53.3399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6778,7 +6778,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "R10")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -7033,7 +7033,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cc374ae1-58f8-43d1-bea9-f68f43f09fbc")
-		(property "Reference" "D2"
+		(property "Reference" "D4"
 			(at 189.23 62.5474 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7108,7 +7108,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "D2")
+					(reference "D4")
 					(unit 1)
 				)
 			)
@@ -7298,7 +7298,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ddf999a5-216a-45b2-8c49-1d0260d8d7d4")
-		(property "Reference" "R2"
+		(property "Reference" "R9"
 			(at 85.09 21.5899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7362,7 +7362,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "R2")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -8087,7 +8087,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ed11af6b-dffb-4748-acec-fa0af9b727b3")
-		(property "Reference" "R1"
+		(property "Reference" "R8"
 			(at 74.93 17.78 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8149,7 +8149,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "R1")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -8167,7 +8167,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f0390d02-212d-4d0f-b689-f2931acb4774")
-		(property "Reference" "D4"
+		(property "Reference" "D5"
 			(at 201.93 62.5474 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8242,7 +8242,7 @@
 		(instances
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
-					(reference "D4")
+					(reference "D5")
 					(unit 1)
 				)
 			)
