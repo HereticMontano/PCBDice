@@ -8077,7 +8077,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 74.93 24.13 270)
+		(at 74.93 24.13 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8108,7 +8108,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal"
-			(at 74.676 25.146 90)
+			(at 75.184 23.114 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
