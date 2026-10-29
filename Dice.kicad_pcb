@@ -1839,6 +1839,7 @@
 		(property "Value" "SW_DPST_x2"
 			(at 3.81 3.42 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "932f2ddd-5568-4f91-9d65-c1fcdbce1ca4")
 			(effects
 				(font
@@ -3816,7 +3817,6 @@
 		(property "Reference" "Q1"
 			(at 1.27 -3.56 0)
 			(layer "F.SilkS")
-			(hide yes)
 			(uuid "26c82835-f62c-4063-868d-e8a21cc9a59d")
 			(effects
 				(font
@@ -3828,6 +3828,7 @@
 		(property "Value" "NPN"
 			(at 1.27 2.79 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "4f41fb5f-0b33-4dec-bcae-e110eeb8db21")
 			(effects
 				(font
@@ -6595,6 +6596,20 @@
 			)
 		)
 	)
+	(gr_poly
+		(pts
+			(xy 149.56 105.27) (xy 150.089167 109.900207) (xy 148.501667 107.915833) (xy 146.914167 109.900207)
+			(xy 147.443334 105.27) (xy 143.871459 101.962708) (xy 148.104792 103.682499) (xy 148.501667 102.624166)
+			(xy 148.898542 103.682499) (xy 153.131875 101.962708)
+		)
+		(stroke
+			(width 0.132291)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "9f07feb1-fe8c-405b-b854-84ec67086850")
+	)
 	(gr_rect
 		(start 81.75 65.5)
 		(end 163.3 113.73)
@@ -6605,6 +6620,19 @@
 		(fill no)
 		(layer "Edge.Cuts")
 		(uuid "61c55946-01a0-48a8-81b7-5e1eead59c99")
+	)
+	(gr_text "First Project"
+		(at 141.47 99.88 0)
+		(layer "F.SilkS")
+		(uuid "16812715-1021-4fc2-b4f3-50fa5fdf2de8")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
 	)
 	(segment
 		(start 130.27 88.85)
