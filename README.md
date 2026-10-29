@@ -25,7 +25,7 @@ It can handle the 6 posible state, only managmente 4 groups of leds.
 
 ## First step (Schema)
 Learn how to use KICad and how to make a schema, and some of good practice/convention to do it.
-I had to re do a cuple of time to improve the readability of it, the first version the lines are all over the place.
+I had to re do a cuple of time to improve the readability of it, in the first version the lines are all over the place.
 
 ## Second step (Prototype)  
 
