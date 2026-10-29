@@ -9,14 +9,16 @@ When push the button, it fire the clock to send an astable signal to the IC coun
 
 It can handle the 6 posible state, only managmente 4 groups of leds.
 
+```
 *2     *5 
 *3  *1 *6
 *4     *7
+```
 
-The led 1 it will be ON to reresent the numbers 1, 3 and 5.
-The led 4 and 5 it will be always ON excepto when need to represent the number 1.
-The led 2 and 6 it will be ON to reresent the numbers 4, 5 and 6.
-The led 3 and 6 it will be ON to reresent the numbers 6.
+- The led 1 it will be ON to reresent the numbers 1, 3 and 5.
+- The led 4 and 5 it will be always ON excepto when need to represent the number 1.
+- The led 2 and 6 it will be ON to reresent the numbers 4, 5 and 6.
+- The led 3 and 6 it will be ON to reresent the numbers 6.
 
 ![Dice faces](assets/6D.png)
  
