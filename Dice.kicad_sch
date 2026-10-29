@@ -1771,6 +1771,194 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:D"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Device" "D"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "D_0_1"
+				(polyline
+					(pts
+						(xy -1.27 1.27) (xy -1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:LED"
 			(pin_numbers
 				(hide yes)
@@ -3448,16 +3636,6 @@
 	)
 	(wire
 		(pts
-			(xy 19.05 20.32) (xy 30.48 20.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1b75fbe6-33ed-427c-8a9c-9e168950c4eb")
-	)
-	(wire
-		(pts
 			(xy 154.94 135.89) (xy 167.64 135.89)
 		)
 		(stroke
@@ -3605,6 +3783,16 @@
 			(type default)
 		)
 		(uuid "65dd416e-eb29-4528-9c83-1329d94d811e")
+	)
+	(wire
+		(pts
+			(xy 31.75 20.32) (xy 36.83 20.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "673d657c-756d-45a8-b24b-101802e1fdf7")
 	)
 	(wire
 		(pts
@@ -3915,6 +4103,16 @@
 			(type default)
 		)
 		(uuid "ef1552b3-37ea-4795-95d0-6633312a5f42")
+	)
+	(wire
+		(pts
+			(xy 19.05 20.32) (xy 24.13 20.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f4fb9587-5bcc-428d-8b4f-8b4a6d730997")
 	)
 	(wire
 		(pts
@@ -6766,7 +6964,7 @@
 	)
 	(symbol
 		(lib_id "symbols:EVQ-P0E07K")
-		(at 30.48 17.78 0)
+		(at 36.83 17.78 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6776,7 +6974,7 @@
 		(dnp no)
 		(uuid "bf4fdba0-cf74-4adb-9d72-a1854ea9f72f")
 		(property "Reference" "S1"
-			(at 48.768 18.288 0)
+			(at 55.118 18.288 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6787,7 +6985,7 @@
 			)
 		)
 		(property "Value" "EVQ-P0E07K"
-			(at 35.814 24.13 0)
+			(at 42.164 24.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6798,7 +6996,7 @@
 			)
 		)
 		(property "Footprint" "footprints:EVQP0E07K"
-			(at 49.53 112.7 0)
+			(at 55.88 112.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6810,7 +7008,7 @@
 			)
 		)
 		(property "Datasheet" "https://4donline.ihs.com/images/VipMasterIC/IC/PANA/PANAS38644/PANAS38644-1.pdf?hkey=52A5661711E402568146F3353EA87419"
-			(at 49.53 212.7 0)
+			(at 55.88 212.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6822,7 +7020,7 @@
 			)
 		)
 		(property "Description" "Black Tactile Switch, Single Pole Single Throw (SPST) 50 mA @ 30 V dc 7.45mm"
-			(at 30.48 17.78 0)
+			(at 36.83 17.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6833,7 +7031,7 @@
 			)
 		)
 		(property "Height" "7.45"
-			(at 49.53 412.7 0)
+			(at 55.88 412.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6845,7 +7043,7 @@
 			)
 		)
 		(property "Mouser Part Number" "667-EVQ-P0E07K"
-			(at 49.53 512.7 0)
+			(at 55.88 512.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6857,7 +7055,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Panasonic/EVQ-P0E07K?qs=EER3j8OP4JjRBsW%252BCEIoOg%3D%3D"
-			(at 49.53 612.7 0)
+			(at 55.88 612.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6869,7 +7067,7 @@
 			)
 		)
 		(property "Manufacturer_Name" "Panasonic"
-			(at 49.53 712.7 0)
+			(at 55.88 712.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6881,7 +7079,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "EVQ-P0E07K"
-			(at 49.53 812.7 0)
+			(at 55.88 812.7 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7492,7 +7690,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 30.48 17.78 90)
+		(at 36.83 17.78 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7503,7 +7701,7 @@
 		(fields_autoplaced yes)
 		(uuid "dee565a2-3a3a-4fdd-9763-46b8bb501568")
 		(property "Reference" "#PWR021"
-			(at 34.29 17.78 0)
+			(at 40.64 17.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7514,7 +7712,7 @@
 			)
 		)
 		(property "Value" "+3V"
-			(at 29.21 15.24 90)
+			(at 35.56 15.24 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7524,7 +7722,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 30.48 17.78 0)
+			(at 36.83 17.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7535,7 +7733,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 30.48 17.78 0)
+			(at 36.83 17.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7546,7 +7744,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 30.48 17.78 0)
+			(at 36.83 17.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7840,6 +8038,108 @@
 			(project "Dice"
 				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
 					(reference "#PWR017")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D")
+		(at 27.94 20.32 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e87bbc24-d26f-4d7b-bed6-d3ae43a54feb")
+		(property "Reference" "D8"
+			(at 27.94 13.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "D"
+			(at 27.94 16.51 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+			(at 27.94 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.94 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Diode"
+			(at 27.94 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 27.94 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 27.94 20.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "a79c4bd3-02ac-40bc-a0a1-978c2bde65f8")
+		)
+		(pin "1"
+			(uuid "fe9158d0-7f1e-4f6f-9ebe-d887994c613c")
+		)
+		(instances
+			(project "Dice"
+				(path "/468d8eab-55b6-4b88-919a-a10fe942a8e1"
+					(reference "D8")
 					(unit 1)
 				)
 			)
