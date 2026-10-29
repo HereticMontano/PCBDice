@@ -18,7 +18,7 @@ The led 4 and 5 it will be always ON excepto when need to represent the number 1
 The led 2 and 6 it will be ON to reresent the numbers 4, 5 and 6.
 The led 3 and 6 it will be ON to reresent the numbers 6.
 
-![Dice faces](assets/6D.webp)
+![Dice faces](assets/6D.png)
  
 
 ## First step (Schema)
