@@ -4191,7 +4191,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "270"
+		(property "Value" "220"
 			(at 205.74 106.6799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4980,7 +4980,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "270"
+		(property "Value" "220"
 			(at 189.23 138.4299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5061,7 +5061,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "300"
+		(property "Value" "680"
 			(at 142.24 138.4301 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5683,7 +5683,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "300"
+		(property "Value" "680"
 			(at 157.48 140.9699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5937,7 +5937,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "270"
+		(property "Value" "220"
 			(at 201.93 138.4299 0)
 			(show_name no)
 			(do_not_autoplace no)
