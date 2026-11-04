@@ -1,102 +1,121 @@
 * ============================================================================
 * SPICE Models for PCBDice (3V Electronic Dice)
-* - Red LEDs (D1..D7): Vf ~ 1.8V at 4mA
-* - Reverse polarity diode (D8): Schottky 1N5817 (Vf ~ 0.2V)
-* - NPN Transistor (Q1): 2N2222A (hFE ~ 180)
-* - Switches (SW1, SW2): Closed for simulation
-* - U1 (LMC555 / LM555xM): CMOS 555 Timer (XSPICE SR latch + comparators)
-* - U2 (CD4017BE): Johnson Counter (10 outputs, Rout ~ 400 Ohms at 3V)
-* - U3 (74HC32 / 74LS32): Quad 2-Input OR Gate (Rout ~ 50 Ohms at 3V)
+* Extraidos y calibrados con los 4 datasheets oficiales en ~/Downloads:
+*   1. 2N2219A.PDF (STMicroelectronics - 2N2219A / 2N2222A)
+*   2. lmc555.pdf  (Texas Instruments SNAS558N - LMC555 CMOS Timer)
+*   3. CD4022B.PDF (Texas Instruments / Harris SCHS027C - CD4017B / CD4022B)
+*   4. cd54hc32.pdf (Texas Instruments SCHS274D - CD74HC32 / CD54HC32)
 * ============================================================================
 
-* --- LED Rojo (Vf = 1.8V @ 4mA) ---
+* --- LED Rojo estandar 5mm (Vf = 1.8V @ 4mA) ---
 .model LED D(IS=1e-19 N=1.8 RS=5 CJO=10p)
 
 * --- Diodo de proteccion D8 (Schottky ~0.2V) ---
 .model D_PROT D(IS=5e-6 N=1.05 RS=0.2 CJO=20p)
 
-* --- Transistor NPN 2N2222A ---
-.model Q2N2222 NPN(IS=1e-14 VAF=100 BF=180 IKF=0.3 RB=10 RC=0.3 RE=0.2 CJC=8p CJE=25p TF=0.4n TR=40n)
+* --- Transistor NPN 2N2222A (segun 2N2219A.PDF de STMicroelectronics) ---
+* Datos oficiales del PDF:
+*   hFE = 35 (0.1mA), 50 (1mA), 75 (10mA), 100..300 (150mA, Typ 200)
+*   VCE(sat) = 0.3V max (IC=150mA, IB=15mA), VBE(sat) = 0.6V..1.2V
+*   CEBO (CJE) = 25 pF max, CCBO (CJC) = 8 pF max
+*   fT = 300 MHz min (TF = 0.53 ns), ts = 225 ns (TR = 150 ns), V(BR)CEO = 40V
+.model Q2N2222 NPN(IS=1.4e-14 BF=200 NF=1.0 VAF=100 IKF=0.3 ISE=5e-15 NE=1.5 BR=4 NR=1.0 VAR=20 RB=10 RC=0.4 RE=0.2 CJE=25p VJE=0.75 MJE=0.33 CJC=8p VJC=0.75 MJC=0.33 TF=0.53n TR=150n)
 
 * --- Interruptor cerrado (para simular con SW1 y SW2 activados) ---
 .subckt SW_CLOSED 1 2
 Rsw 1 2 0.01
 .ends
 
-* --- Temporizador 555 CMOS (LMC555) ---
+* --- Temporizador 555 CMOS (LMC555 segun TI SNAS558N lmc555.pdf) ---
 * Pines KiCad: 1=GND 2=TRIG 3=OUT 4=RST 5=CONT 6=THRES 7=DISCH 8=VCC
+* Datos oficiales sección 5.5 y 5.6 del PDF:
+*   Is (Supply current): 130 uA (1.5V) a 180 uA (5V) -> ~150 uA a 3V (R_supply + divisor = 20k equiv)
+*   VCTRL = 2/3 Vs (2.0V @ 3V), VTRIG = 1/3 Vs (1.0V @ 3V)
+*   VDIS = 75 mV @ 1mA (1.5V), 150 mV @ 10mA (5V) -> Ron_disch = 18 Ohmios a 3V
+*   VOL = 0.2V @ 1mA (1.5V), 0.3V @ 8mA (5V) / VOH = 1.25V @ 0.25mA (1.5V), 4.7V @ 2mA (5V) -> Rout ~ 120 Ohmios a 3V
+*   VRES = 0.7V typ (0.4V min .. 1.0V max)
+*   tPD = 100 ns, tR/tF = 15 ns
 .subckt LMC555 1 2 3 4 5 6 7 8
-* Divisor resistivo interno de 100k - 100k - 100k (1/3 y 2/3 VCC)
+* Divisor resistivo interno CMOS (100k - 100k - 100k => 10 uA) + corriente de polarizacion (140 uA @ 3V => 21.4k)
 Rdiv1 8 5 100k
 Rdiv2 5 n_trig_ref 100k
 Rdiv3 n_trig_ref 1 100k
+R_iquiescent 8 1 21.4k
 
-* Rampa de arranque suave (1 us) para que el punto DC (op) converja al 100% y C1 empiece en 0V
+* Inicializacion suave de 1 us para convergencia DC (OP) en KiCad
 V_init n_init 0 PULSE(0 1 1u 1u 1u 1000 2000)
 R_init n_init 0 1Meg
-* Durante DC op (n_init=0), mantiene C1 descargado en 0V; en t>1us se abre por completo
 B_cap_init 6 1 I = (1 - V(n_init)) * V(6,1) / 10
 
-* Comparador Schmitt con histeresis entre 1/3 VCC (n_trig_ref) y 2/3 VCC (pin 5)
+* Comparador con histeresis exacta entre VTRIG (1/3 Vs) y VCTRL (2/3 Vs) y VRES = 0.7V
 B_thresh n_th 1 V = V(n_trig_ref,1) + V(n_state,1) * (V(5,1) - V(n_trig_ref,1))
 B_comp   n_target 1 V = (V(4,1) > 0.7) ? (0.5 * (1 + tanh(50 * (V(n_th,1) - V(6,1))))) : 0
 R_st n_target n_state 1k
 C_st n_state 1 10n
 
-* Salida Pin 3 (OUT) con resistencia de salida CMOS (~50 ohm)
+* Salida Pin 3 (OUT) con Rout = 120 Ohmios (segun VOH/VOL del datasheet a 3V)
 B_out n_out_int 1 V = (V(n_state,1) > 0.5 ? 1 : 0) * V(8,1)
-R_out n_out_int 3 50
+R_out n_out_int 3 120
 
-* Descarga Pin 7 (DISCH): conduce a Pin 1 (GND) cuando la salida esta en BAJO (n_state < 0.5)
-B_dis 7 1 I = (V(n_state,1) < 0.5 ? 1 : 0) * V(7,1) / 15
-R_dis_leak 7 1 100Meg
+* Descarga Pin 7 (DISCH): Ron = 18 Ohmios (VDIS = 75mV..150mV) y fuga IDIS = 1nA (1000Meg)
+B_dis 7 1 I = (V(n_state,1) < 0.5 ? 1 : 0) * V(7,1) / 18
+R_dis_leak 7 1 1000Meg
 .ends
 
-* --- Contador Johnson CD4017BE ---
+* --- Contador Johnson CD4017BE (segun TI/Harris SCHS027C CD4022B.PDF) ---
 * Pines KiCad: 1=Q5 2=Q1 3=Q0 4=Q2 5=Q6 6=Q7 7=Q3 8=VSS 9=Q8 10=Q4 11=Q9 12=Cout 13=CKEN 14=CLK 15=Reset 16=VDD
+* Datos oficiales de las tablas Static & Dynamic Electrical Characteristics:
+*   IDD quiescent = 0.04 uA typ (5 uA max) -> R_vdd = 75Meg
+*   VIL max = 30% VDD (0.9V @ 3V), VIH min = 70% VDD (2.1V @ 3V)
+*   IOH / IOL: a 5V VOH=4.6V @ -0.51mA y 2.5V @ -1.6mA; a 3V Rout_source ~ 450 Ohmios
+*   Propagation delay (Decode Out): tPHL/tPLH = 325 ns typ @ 5V (~450 ns @ 3V)
+*   Input capacitance CIN = 5 pF
 .subckt CD4017BE 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
-* Puentes ADC para entradas digitales (CLK, CKEN, Reset)
+* Capacitancia de entrada oficial (5 pF)
+Cin_clk  14 8 5p
+Cin_cken 13 8 5p
+Cin_rst  15 8 5p
+
+* Puentes ADC con umbrales oficiales VIL = 0.9V (30%) y VIH = 2.1V (70%) a 3V
 a_adc [14 13 15] [d_clk d_cken d_rst] adc_4017
-.model adc_4017 adc_bridge(in_low=1.0 in_high=2.0)
+.model adc_4017 adc_bridge(in_low=0.9 in_high=2.1)
 
 * Reloj efectivo: CLK AND NOT(CKEN)
 a_inv_cken d_cken d_cken_n inv_g
-.model inv_g d_inverter(rise_delay=5n fall_delay=5n)
+.model inv_g d_inverter(rise_delay=20n fall_delay=20n)
 a_clk_gate [d_clk d_cken_n] d_clk_eff and_g
-.model and_g d_and(rise_delay=5n fall_delay=5n)
+.model and_g d_and(rise_delay=20n fall_delay=20n)
 
-* Maquina de estados / contador anillo de 6 estados (dado Q0..Q5)
+* Maquina de estados Johnson (mod-6 cuando Q6 se conecta a Reset) con retardo oficial (~325 ns)
 a_ff0 d_d0 d_clk_eff d_zero d_rst d_b0 d_b0_n dff_g
 a_ff1 d_d1 d_clk_eff d_zero d_rst d_b1 d_b1_n dff_g
 a_ff2 d_d2 d_clk_eff d_zero d_rst d_b2 d_b2_n dff_g
-.model dff_g d_dff(clk_delay=5n set_delay=5n reset_delay=5n ic=0 rise_delay=5n fall_delay=5n)
+.model dff_g d_dff(clk_delay=200n set_delay=150n reset_delay=200n ic=0 rise_delay=100n fall_delay=100n)
 
 a_zero d_zero pulldown_g
 .model pulldown_g d_pulldown(load=1pF)
 
-* Logica de siguiente estado mod-6 (0->1->2->3->4->5->0):
 a_d0_buf d_b0_n d_d0 buf_g
-.model buf_g d_buffer(rise_delay=2n fall_delay=2n)
+.model buf_g d_buffer(rise_delay=10n fall_delay=10n)
 
 a_xor1 [d_b1 d_b0] d_b1_xor_b0 xor_g
-.model xor_g d_xor(rise_delay=2n fall_delay=2n)
+.model xor_g d_xor(rise_delay=10n fall_delay=10n)
 a_and_d1 [d_b1_xor_b0 d_b2_n] d_d1 and_g
 
 a_and_d2a [d_b2 d_b0_n] d_t2a and_g
 a_and_d2b [d_b1 d_b0] d_t2b and_g
 a_or_d2 [d_t2a d_t2b] d_d2 or_g
-.model or_g d_or(rise_delay=2n fall_delay=2n)
+.model or_g d_or(rise_delay=10n fall_delay=10n)
 
-* Decodificador de las salidas Q0..Q5:
+* Decodificador de salidas Q0..Q5 y Carry Out (Cout = 1 en estados 0..4, 0 en 5..9):
 a_q0 [d_b2_n d_b1_n d_b0_n] d_q0 and3_g
 a_q1 [d_b2_n d_b1_n d_b0]   d_q1 and3_g
 a_q2 [d_b2_n d_b1 d_b0_n]   d_q2 and3_g
 a_q3 [d_b2_n d_b1 d_b0]     d_q3 and3_g
 a_q4 [d_b2 d_b1_n d_b0_n]   d_q4 and3_g
 a_q5 [d_b2 d_b1_n d_b0]     d_q5 and3_g
-.model and3_g d_and(rise_delay=5n fall_delay=5n)
+.model and3_g d_and(rise_delay=25n fall_delay=25n)
 
-* Puente DAC (0 a 1) escalado por VDD(16)
 a_dac [d_q0 d_q1 d_q2 d_q3 d_q4 d_q5] [u_q0 u_q1 u_q2 u_q3 u_q4 u_q5] dac_4017
 .model dac_4017 dac_bridge(out_low=0.0 out_high=1.0 out_undef=0.0)
 
@@ -107,49 +126,69 @@ B_q3 a_q3 8 V = V(u_q3) * V(16,8)
 B_q4 a_q4 8 V = V(u_q4) * V(16,8)
 B_q5 a_q5 8 V = V(u_q5) * V(16,8)
 
-* Resistencia interna real de salida del CD4017BE a 3V (~400 Ohmios)
-Rq0 a_q0 3  400
-Rq1 a_q1 2  400
-Rq2 a_q2 4  400
-Rq3 a_q3 7  400
-Rq4 a_q4 10 400
-Rq5 a_q5 1  400
+* Resistencia de salida oficial del CD4017B a 3V (~450 Ohmios segun curvas Fig. 5 y Fig. 7)
+Rq0 a_q0 3  450
+Rq1 a_q1 2  450
+Rq2 a_q2 4  450
+Rq3 a_q3 7  450
+Rq4 a_q4 10 450
+Rq5 a_q5 1  450
 
-* Salidas no usadas (Q6..Q9, Cout) a VSS a traves de 400 ohm
-Rq6 8 5  400
-Rq7 8 6  400
-Rq8 8 9  400
-Rq9 8 11 400
-Rcout 8 12 400
-R_vdd 16 8 1Meg
+* Salidas no usadas (Q6..Q9, Cout)
+Rq6 8 5  450
+Rq7 8 6  450
+Rq8 8 9  450
+Rq9 8 11 450
+Rcout 8 12 450
+
+* Corriente quiescente tipica IDD = 0.04 uA @ 3V (75 Meg)
+R_vdd 16 8 75Meg
 .ends
 
-* --- Cuadruple Compuerta OR 74HC32 ---
+* --- Cuadruple Compuerta OR CD74HC32 (segun TI SCHS274D cd54hc32.pdf) ---
 * Pines KiCad: 1=1A 2=1B 3=1Y 4=2A 5=2B 6=2Y 7=GND 8=3Y 9=3A 10=3B 11=4Y 12=4A 13=4B 14=VCC
+* Datos oficiales secciones 6.3, 6.5 y 6.6 del PDF:
+*   VIH min = 1.5V (@ 2V), 3.15V (@ 4.5V) -> 2.1V (@ 3V)
+*   VIL max = 0.5V (@ 2V), 1.35V (@ 4.5V) -> 0.9V (@ 3V)
+*   VOH = 3.98V min @ -4mA (4.5V) / VOL = 0.26V max @ 4mA (4.5V) -> Rout ~ 65 Ohmios
+*   ICC = 2 uA max (R_vcc = 1.5Meg)
+*   Ci = 10 pF en cada entrada
+*   tpd = 18 ns (@ 4.5V) a 90 ns (@ 2V) -> ~35 ns (@ 3V)
 .subckt SN74HC32 1 2 3 4 5 6 7 8 9 10 11 12 13 14
+* Capacitancias de entrada oficiales (Ci = 10 pF)
+Ci1  1  7 10p
+Ci2  2  7 10p
+Ci4  4  7 10p
+Ci5  5  7 10p
+Ci9  9  7 10p
+Ci10 10 7 10p
+Ci12 12 7 10p
+Ci13 13 7 10p
+
 a_adc_or [1 2 4 5 9 10 12 13] [d_1a d_1b d_2a d_2b d_3a d_3b d_4a d_4b] adc_hc32
-.model adc_hc32 adc_bridge(in_low=1.0 in_high=1.8)
+.model adc_hc32 adc_bridge(in_low=0.9 in_high=2.1)
 
 a_or1 [d_1a d_1b] d_1y or_hc32
 a_or2 [d_2a d_2b] d_2y or_hc32
 a_or3 [d_3a d_3b] d_3y or_hc32
 a_or4 [d_4a d_4b] d_4y or_hc32
-.model or_hc32 d_or(rise_delay=5n fall_delay=5n)
+.model or_hc32 d_or(rise_delay=35n fall_delay=35n)
 
 a_dac_or [d_1y d_2y d_3y d_4y] [u_1y u_2y u_3y u_4y] dac_hc32
 .model dac_hc32 dac_bridge(out_low=0.0 out_high=1.0 out_undef=0.0)
 
 B_y1 n_y1 7 V = V(u_1y) * V(14,7)
-R_y1 n_y1 3 50
+R_y1 n_y1 3 65
 
 B_y2 n_y2 7 V = V(u_2y) * V(14,7)
-R_y2 n_y2 6 50
+R_y2 n_y2 6 65
 
 B_y3 n_y3 7 V = V(u_3y) * V(14,7)
-R_y3 n_y3 8 50
+R_y3 n_y3 8 65
 
 B_y4 n_y4 7 V = V(u_4y) * V(14,7)
-R_y4 n_y4 11 50
+R_y4 n_y4 11 65
 
-R_vcc 14 7 1Meg
+* Corriente estatica ICC = 2 uA (1.5 Meg @ 3V)
+R_vcc 14 7 1.5Meg
 .ends

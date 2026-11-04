@@ -4168,6 +4168,17 @@
 		)
 		(uuid "ffd28cb3-d12e-4a72-8420-4045a97be844")
 	)
+	(text ".tran 100u 120m\n"
+		(exclude_from_sim no)
+		(at 25.4 101.6 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4dd0d58e-463c-4f81-bdbe-13e383dac5a6")
+	)
 	(symbol
 		(lib_id "Device:R_US")
 		(at 203.2 105.41 0)
